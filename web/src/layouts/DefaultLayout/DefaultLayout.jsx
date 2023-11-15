@@ -5,26 +5,27 @@ import { useAuth } from 'src/auth'
 const DefaultLayout = ({ children }) => {
   const { isAuthenticated, currentUser, logOut } = useAuth()
 
+  const user = currentUser
+
+  const username = user?.email
+
   return (
     <>
       <header>
-        <h1 className="bg-black uppercase text-white py-4 px-2">
+        <h1 className="bg-black px-2 py-4 uppercase text-white">
           <div className="w-full flex-row-reverse border border-red-500">
             <div className="flex border-2 border-green-600">
               <Link
-                className="text-white flex border-2 px-2 border-black rounded-2xl hover:border-2 hover:border-white"
+                className="flex rounded-2xl border-2 border-black px-2 text-white hover:border-2 hover:border-white"
                 to={routes.home()}
               >
                 D A D J O K E S
               </Link>
               {isAuthenticated ? (
-                <div className="normal-case flex-row-reverse">
-                  <span>
-                    Logged in as{' '}
-                    {currentUser?.email ? currentUser.email : 'Nobody'}
-                  </span>{' '}
+                <div className="flex-row-reverse normal-case">
+                  <span>Logged in as {username ? username : 'Nobody'}</span>{' '}
                   <button
-                    className="rw-button bg-black hover:bg-gray-700 text-white hover:text-white border border-white hover:border hover:border-white"
+                    className="rw-button border border-white bg-black text-white hover:border hover:border-white hover:bg-gray-700 hover:text-white"
                     type="button"
                     onClick={logOut}
                   >
@@ -36,11 +37,11 @@ const DefaultLayout = ({ children }) => {
               )}
             </div>
           </div>
-          <div className="px-8 inline-flex">
+          <div className="inline-flex px-8">
             <nav>
               <ul>
                 <li>
-                  <Link to={routes.home()} className="hover:underline py-1">
+                  <Link to={routes.home()} className="py-1 hover:underline">
                     Home
                   </Link>
                 </li>
