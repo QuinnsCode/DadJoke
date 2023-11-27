@@ -6,6 +6,7 @@ export const schema = gql`
   }
 
   type Query {
+    randomDadJoke: DadJoke @skipAuth
     dadJokes: [DadJoke!]! @requireAuth
     dadJoke(id: String!): DadJoke @requireAuth
   }
